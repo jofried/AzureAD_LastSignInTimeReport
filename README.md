@@ -5,4 +5,4 @@ You will first need to complete the steps to create the Azure AD app registratio
 
 After the App Registration is configured, you will need to update the [Powershell script](https://github.com/jofried/AzureAD_LastSignInTimeReport/blob/main/Graph-ReportLastSignInTime.ps1) with the AppID, TenantID, and Client_Secret. These variables are defined in the first few lines of the script
 
-The script will output the results inline, as well as, generate a CSV file with the results. The CSV file will be save under the "C:\temp\" directory, so please make sure this filepath exists. The CSV file can be opened in Excel to sort and filter the results to find users that have not logged in since a given time.
+The script will output the results to a CSV file. The CSV file will be saved under the "C:\temp\" directory, please make sure this filepath exists. The CSV file can be opened in Excel to sort and filter the results to find users that have not logged in since a given time.
