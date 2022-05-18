@@ -64,12 +64,12 @@ $authHeader = @{
 #######################################################################
 #Execute the Microsoft Graph query
 #######################################################################
-$SignInActivity = Invoke-WebRequest -Headers $AuthHeader -Uri "https://graph.microsoft.com/beta/users?`$select=displayName,userPrincipalName,signInActivity"
+$SignInActivity = Invoke-WebRequest -Headers $AuthHeader -Uri "https://graph.microsoft.com/beta/users?`$select=displayName,userType,userPrincipalName,signInActivity"
 $result = ($SignInActivity.Content | ConvertFrom-Json).Value
 
 #######################################################################
 #Export results to CSV (Folder "C:\temp" must be created)
 #######################################################################
 $path = "c:\temp\SignInActivity_$(get-date -Format MM-dd-yyyy--HH.mm.ss).csv"
-$result | Select-Object DisplayName,UserPrincipalName,@{n="LastLoginDate";e={$_.signInActivity.lastSignInDateTime}} | Export-Csv -Path  $path-NoTypeInformation -Encoding UTF8 -UseCulture
+$result | Select-Object DisplayName,UserType,UserPrincipalName,@{n="LastLoginDate";e={$_.signInActivity.lastSignInDateTime}} | Export-Csv -Path  $path-NoTypeInformation -Encoding UTF8 -UseCulture
 Write-Host "The LastSignInTime report has been saved to:" $path -ForegroundColor Green
